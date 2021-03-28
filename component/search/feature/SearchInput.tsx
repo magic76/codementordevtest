@@ -16,6 +16,7 @@ const SearchInput = () => {
 	};
 	return (
 		<input
+			aria-label="searchInput"
 			ref={inputRef}
 			defaultValue={searchKey}
 			style={{ width: '200px', margin: '20px 0 0 0 ' }}

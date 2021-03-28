@@ -4,7 +4,7 @@ import { useContext, useState } from 'react';
 import { SearchContext, ISearchItem } from '../../../store/SearchContext';
 
 const SearchRow: React.FC<{ searchItem: ISearchItem }> = ({ searchItem }) => {
-	const { title, author_name, categories = [], id } = searchItem;
+	const { title, author_name, categories = [] } = searchItem;
 	const [isShowControllButton, setShowControllButton] = useState(false);
 	return (
 		<div
@@ -41,9 +41,13 @@ const SearchRow: React.FC<{ searchItem: ISearchItem }> = ({ searchItem }) => {
 	);
 };
 
+const checkSearchExist = ({ list, searchItem }) => {
+	return list.some(item => item.id === searchItem.id);
+};
+
 const ControllButton: React.FC<{ searchItem: ISearchItem }> = ({ searchItem }) => {
 	const { add, remove, list } = useContext(SearchContext);
-	const isAdd = list.some(item => item.id === searchItem.id);
+	const isAdd = checkSearchExist({ list, searchItem });
 	const style = { backgroundColor: '#ffffff', border: 'solid 1px', borderRadius: '2px', cursor: 'pointer' };
 	return (
 		<>
@@ -62,7 +66,7 @@ const ControllButton: React.FC<{ searchItem: ISearchItem }> = ({ searchItem }) =
 
 const SavedButton: React.FC<{ searchItem: ISearchItem }> = ({ searchItem }) => {
 	const { list } = useContext(SearchContext);
-	const isSaved = list.some(item => item.id === searchItem.id);
+	const isSaved = checkSearchExist({ list, searchItem });
 	return isSaved ? (
 		<button style={{ color: '#ffffff', backgroundColor: '#e2e2e2', border: '0', borderRadius: '2px' }}>
 			Saved
