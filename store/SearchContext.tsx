@@ -16,9 +16,9 @@ export const SearchContext = React.createContext({
 	setSearchKey: (value: string) => {},
 });
 
-export const SearchProvider: React.FC = props => {
-	const [searchKey, setSearchKey] = useState('');
-	const [list, setList] = useState<ISearchItem[]>([]);
+export const SearchProvider: React.FC<{ searchKey?: string; list?: ISearchItem[] }> = props => {
+	const [searchKey, setSearchKey] = useState(props.searchKey ?? '');
+	const [list, setList] = useState<ISearchItem[]>(props.list ?? []);
 	const add = (currentItem: ISearchItem) => {
 		setList([...list, currentItem]);
 	};

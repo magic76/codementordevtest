@@ -18,6 +18,7 @@ const SearchRow: React.FC<{ searchItem: ISearchItem }> = ({ searchItem }) => {
 				<>
 					{categories.map(categorie => (
 						<div
+							key={categorie}
 							style={{
 								whiteSpace: 'nowrap',
 								backgroundColor: '#e2e2e2',

@@ -19,6 +19,7 @@ const SearchTab = () => {
 				const style = isActive ? { color: '#969696', backgroundColor: '#ffffff' } : { color: '#969696' };
 				return (
 					<div
+						key={tab.name}
 						onClick={() => router.push(tab.path)}
 						style={{ cursor: 'pointer', marginTop: 'auto', padding: '5px 15px', ...style }}
 					>
