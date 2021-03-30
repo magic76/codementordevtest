@@ -20,7 +20,7 @@ describe('SearchContent', () => {
 	});
 	it('renders list with two items', async () => {
 		const providerProps = {
-			searchKey: '',
+			searchKey: 'test',
 		};
 
 		customRender(<SearchContent />, { providerProps });
@@ -29,5 +29,15 @@ describe('SearchContent', () => {
 			expect(screen.getByText(/1st title/i)).toBeTruthy();
 			expect(screen.getByText(/2nd title/i)).toBeTruthy();
 		});
+	});
+
+	it(' initial without no result/ loading', async () => {
+		const providerProps = {
+			searchKey: '',
+		};
+
+		customRender(<SearchContent />, { providerProps });
+		expect(screen.queryByText(/loading/)).toBeNull();
+		expect(screen.queryByText(/No result/)).toBeNull();
 	});
 });
